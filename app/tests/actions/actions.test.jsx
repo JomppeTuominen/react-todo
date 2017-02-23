@@ -82,6 +82,22 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should generate login action', () => {
+    var action = {
+      type: 'LOGIN',
+      uid: 'someuid'
+    };
+    var res = actions.login(action.uid);
+    expect(res).toEqual(action)
+  });
+
+  it('should generate logout action', () => {
+    var action = {
+      type: 'LOGOUT'
+    };
+    var res = actions.logout();
+    expect(res).toEqual(action);
+  });
   describe('Tests with firebase todos', () => {
     var testTodoRef;
 
@@ -131,7 +147,7 @@ describe('Actions', () => {
         expect(mockActions[0].type).toEqual('ADD_TODOS');
         expect(mockActions[0].todos.length).toEqual(1);
         expect(mockActions[0].todos[0].text).toEqual('Something to do');
-        
+
         done();
       }, done)
     })

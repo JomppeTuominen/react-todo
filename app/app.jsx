@@ -10,9 +10,11 @@ import router from 'app/router/';
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    store.dispatch(actions.login(user.uid));
     // redirect to todos on login
     hashHistory.push('/todos');
   } else {
+    store.dispatch(actions.logout());
     // redirect to index on logout
     hashHistory.push('/');
   }
